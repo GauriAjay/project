@@ -6,4 +6,13 @@ from django.views import View
 
 class Index(View):
     def get(self, request):
-        return render(request,'common/index.html')
+        title = "Welcome to best online job portal"
+        context = {'title': title}
+        return render(request,'common/index.html',context)
+
+
+class Login(View):
+    def get(self, request):
+        title = "Login"
+        context = {'title': title}
+        return render(request,'common/login.html',context)
