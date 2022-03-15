@@ -16,18 +16,22 @@
                     <div class="col-lg-6 col-xl-7 col-xxl-5">
                         <div class="pxp-sign-hero-form-content">
                             <h5 class="text-center">Sign In</h5>
-                            <form class="mt-4">
+                            <form class="mt-4" id="loginform" method="post" action>
+                                {% csrf_token %}
+                                {% if msg %}
+                                <center><span style="color: rgb(197, 39, 39)">{{msg}}</span></center><br>
+                                {% endif %}
                                 <div class="form-floating mb-3">
-                                    <input type="email" class="form-control" id="pxp-signin-page-email" placeholder="Email address">
+                                    <input type="text" name="username" class="form-control" id="pxp-signin-page-email" placeholder="Email address">
                                     <label for="pxp-signin-page-email">Email address</label>
                                     <span class="fa fa-envelope-o"></span>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="password" class="form-control" id="pxp-signin-page-password" placeholder="Password">
+                                    <input type="password" name="password" class="form-control" id="pxp-signin-page-password" placeholder="Password">
                                     <label for="pxp-signin-page-password">Password</label>
                                     <span class="fa fa-lock"></span>
                                 </div>
-                                <a href="#" class="btn rounded-pill pxp-sign-hero-form-cta">Continue</a>
+                                <a class="btn rounded-pill pxp-sign-hero-form-cta" onclick="submit()">Continue</a>
                                 <div class="mt-4 text-center pxp-sign-hero-form-small">
                                     <a href="#" class="pxp-modal-link">Forgot password</a>
                                 </div>
@@ -42,6 +46,12 @@
         </div>
     </div>
 </section>
+<script>
+    function submit() {
+        var form = document.getElementById('loginform');
+        form.submit();
+    }
+</script>
 
 {% include 'common/landing_footer.html' %}
 
